@@ -8,8 +8,13 @@ import '../../../../core/shared/domin/entities/movie_entity.dart';
 
 class MovieCardWidget extends StatelessWidget {
   final MovieEntity movie;
+  final bool isFavorite;
+  final VoidCallback addToFavorite;
+  final VoidCallback removeFromFavorite;
 
-  const MovieCardWidget({super.key, required this.movie});
+   const MovieCardWidget({super.key, required this.movie , required this.isFavorite,
+    required this.addToFavorite, required this.removeFromFavorite
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -34,13 +39,34 @@ class MovieCardWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.vertical(top: Radius.circular(12.r)),
-              child: CachedImageNetworkWidget(
-                imageUrl: Constants.handleTmdbImage(movie.image ?? ''),
-                height: 155.h,
-                width: double.infinity,
-              ),
+            Stack(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(12.r)),
+                  child: CachedImageNetworkWidget(
+                    imageUrl: Constants.handleTmdbImage(movie.image ?? ''),
+                    height: 155.h,
+                    width: double.infinity,
+                  ),
+                ),
+                Positioned(
+                  top: 8.h,
+                  right: 8.w,
+                  child: Container(
+                    decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: AppColors.white
+                    ),
+                    child: IconButton(
+                      onPressed:isFavorite ? removeFromFavorite:addToFavorite,
+                      icon: Icon(
+                        Icons.favorite,
+                        color: isFavorite ? AppColors.red : AppColors.grey,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
             Padding(
               padding: EdgeInsets.all(10.r),

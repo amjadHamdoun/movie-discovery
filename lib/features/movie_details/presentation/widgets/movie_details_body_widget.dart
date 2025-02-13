@@ -11,14 +11,12 @@ import '../../../../core/theme/app_colors.dart';
 class MovieDetailsBodyWidget extends StatelessWidget {
   final MovieDetailsEntity movieDetails;
   final List<VideoEntity> videos;
-  final VoidCallback? onToggleFavorite;
   final bool isFavorite;
 
   const MovieDetailsBodyWidget({
     super.key,
     required this.movieDetails,
     required this.videos,
-     this.onToggleFavorite,
      this.isFavorite = false,
   });
 
@@ -46,12 +44,12 @@ class MovieDetailsBodyWidget extends StatelessWidget {
                     shape: BoxShape.circle,
                     color: AppColors.white
                   ),
-                  child: IconButton(
-                    icon: Icon(
-                       Icons.favorite,
+                  child: Padding(
+                    padding:  EdgeInsets.all(8.0.r),
+                    child: Icon(
+                      Icons.favorite,
                       color: isFavorite ? AppColors.red : AppColors.grey,
                     ),
-                    onPressed: onToggleFavorite,
                   ),
                 ),
               ),

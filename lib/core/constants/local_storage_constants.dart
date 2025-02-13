@@ -10,6 +10,7 @@ class HiveKeyConstants {
   static String popularMoviesKey = 'popularMoviesKey';
   static String topRatedMoviesKey = 'topRatedMoviesKey';
   static String nowPlayingMoviesKey = 'nowPlayingMoviesKey';
+  static String favoritesMoviesKey = 'favoritesMoviesKey';
 
 
 }

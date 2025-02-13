@@ -11,5 +11,9 @@ abstract class AbstractMoviesRepository {
   Future<Either<Failure, List<MovieEntity>>> getPopularMovies(MoviesParams params);
   Future<Either<Failure, List<MovieEntity>>> getTopRatedMovies(MoviesParams params);
   Future<Either<Failure, List<MovieEntity>>> getNowPlayingMovies(MoviesParams params);
+  Either<Failure, List<MovieEntity>> getFavoritesMovies();
+  Either<Failure, void> addMovieToFavorite(MovieEntity movie);
+  Either<Failure, void> removeMovieFromFavorite(MovieEntity movie);
+
 
 }

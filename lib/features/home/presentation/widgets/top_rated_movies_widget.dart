@@ -44,7 +44,11 @@ class TopRatedMoviesWidget extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       itemCount: state.topRatedMovies.length>10 ? 10:state.topRatedMovies.length,
                       itemBuilder: (context, index) {
-                        return MovieCardWidget(movie: state.topRatedMovies[index]);
+                        return MovieCardWidget(movie: state.topRatedMovies[index],
+                          addToFavorite: ()=>bloc.add(OnAddFavoriteMovieEvent(state.topRatedMovies[index])),
+                          removeFromFavorite: ()=>bloc.add(OnRemoveFavoriteMovieEvent(state.topRatedMovies[index])),
+                          isFavorite: state.favoriteMovies.any((element) => element.movieId==state.topRatedMovies[index].movieId,),
+                        );
                       },
                     ),
                   ),

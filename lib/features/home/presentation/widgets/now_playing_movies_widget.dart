@@ -42,7 +42,11 @@ class NowPlayingMoviesWidget extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   itemCount: state.nowPlayingMovies.length>10 ? 10:state.nowPlayingMovies.length,
                   itemBuilder: (context, index) {
-                    return MovieCardWidget(movie: state.nowPlayingMovies[index]);
+                    return MovieCardWidget(movie: state.nowPlayingMovies[index],
+                       addToFavorite: ()=>bloc.add(OnAddFavoriteMovieEvent(state.nowPlayingMovies[index])),
+                      removeFromFavorite: ()=>bloc.add(OnRemoveFavoriteMovieEvent(state.nowPlayingMovies[index])),
+                      isFavorite: state.favoriteMovies.any((element) => element.movieId==state.nowPlayingMovies[index].movieId,),
+                    );
                   },
                 ),
               ),

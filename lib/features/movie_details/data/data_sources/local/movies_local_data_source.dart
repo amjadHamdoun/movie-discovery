@@ -11,13 +11,9 @@ abstract class MoviesLocalDataSource {
   List<MovieModel> getPopularMovies();
   List<MovieModel> getTopRatedMovies();
   List<MovieModel> getNowPlayingMovies();
-  List<MovieModel> getFavoritesMovies();
    void putPopularMovies(List<MovieModel> movies);
    void putTopRatedMovies(List<MovieModel> movies);
    void putNowPlayingMovies(List<MovieModel> movies);
-  void addMovieToFavorites(MovieModel movie);
-  void removeMovieFromFavorites(MovieModel movie);
-
 
 }
 
@@ -68,45 +64,6 @@ class MoviesLocalDataSourceImpl extends MoviesLocalDataSource {
   void putTopRatedMovies(List<MovieModel> movies) {
     final Box moviesBox = Hive.box(HiveKeyConstants.moviesBox);
     moviesBox.put(HiveKeyConstants.topRatedMoviesKey, movies);
-  }
-
-  @override
-  void removeMovieFromFavorites(MovieModel movie) {
-    final Box moviesBox = Hive.box(HiveKeyConstants.moviesBox);
-    List<MovieModel> favoritesMovies =getFavoritesMovies();
-    favoritesMovies.remove(movie);
-    moviesBox.put(HiveKeyConstants.favoritesMoviesKey, favoritesMovies);
-  }
-
-  @override
-  void addMovieToFavorites(MovieModel movie) {
-    try{
-      final Box moviesBox = Hive.box(HiveKeyConstants.moviesBox);
-      print('1');
-      List<MovieModel> favoritesMovies =getFavoritesMovies();
-      print(favoritesMovies);
-      favoritesMovies.add(movie);
-      print('after');
-      print(favoritesMovies);
-      moviesBox.put(HiveKeyConstants.favoritesMoviesKey, favoritesMovies);
-    }
-    catch(e){
-      print(e);
-    }
-
-  }
-
-  @override
-  List<MovieModel> getFavoritesMovies() {
-    print('2');
-    final Box moviesBox = Hive.box(HiveKeyConstants.moviesBox);
-    final localFavoritesMovies = moviesBox.get(HiveKeyConstants.favoritesMoviesKey);
-    final List<MovieModel>? favoritesMovies = (localFavoritesMovies as List?)
-        ?.map((e) => e as MovieModel)
-        .toList();
-    print('3');
-    print(favoritesMovies);
-    return favoritesMovies??[];
   }
 
 }

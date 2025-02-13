@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(final BuildContext context) {
-    return  BlocConsumer(
+    return  BlocConsumer<MoviesBloc,MoviesState>(
       bloc: _bloc,
       listener: (context, state) {
         // if(state is ErrorGetMoviesState){
@@ -57,6 +57,12 @@ class _HomePageState extends State<HomePage> {
                 IconButton(onPressed: (){
                   getAppRouter.push(const SearchRoute());
                 }, icon: Icon(Icons.search,
+                  color: AppColors.white,
+                  size: 25.sp,)),
+                IconButton(onPressed: (){
+                  getAppRouter.push( ShowAllMoviesRoute(title: "Favorites",
+                      movies:state is SuccessGetMoviesState? state.favoriteMovies:[]));
+                }, icon: Icon(Icons.favorite_outline_sharp,
                   color: AppColors.white,
                   size: 25.sp,)),
 

@@ -45,6 +45,12 @@ class MovieModel extends MovieEntity {
 
 
 
+@override
+bool operator ==(Object other) =>
+    identical(this, other) ||
+    other is MovieModel && runtimeType == other.runtimeType && movieId == other.movieId;
 
+@override
+int get hashCode => movieId.hashCode;
 
 }

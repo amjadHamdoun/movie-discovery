@@ -1,6 +1,8 @@
 import 'package:auto_route/annotations.dart';
 import 'package:fh/core/router/auto_router.dart';
 import 'package:fh/core/shared/domin/entities/movie_entity.dart';
+import 'package:fh/core/shared/presentation/widgets/app_error_widget.dart';
+import 'package:fh/core/utils/enums.dart';
 import 'package:fh/features/search/presentation/widgets/movie_list_tile_widget.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
@@ -21,7 +23,7 @@ class ShowAllMoviesPage extends StatelessWidget {
             color: AppColors.white
         ),
       )),
-      body: ListView.builder(
+      body: movies.isNotEmpty? ListView.builder(
         itemCount: movies.length,
         itemBuilder: (context, index) {
             return MovieListTileWidget(movie: movies[index], onTap: () {
@@ -29,7 +31,7 @@ class ShowAllMoviesPage extends StatelessWidget {
             },);
 
         },
-      ),
+      ):const AppErrorWidget(error: ErrorType.noDataFound),
     );
   }
 }

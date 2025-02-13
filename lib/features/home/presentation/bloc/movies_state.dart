@@ -16,9 +16,10 @@ class SuccessGetMoviesState extends MoviesState {
   final List<MovieEntity> popularMovies;
   final List<MovieEntity> topRatedMovies;
   final List<MovieEntity> nowPlayingMovies;
+  final List<MovieEntity> favoriteMovies;
 
   SuccessGetMoviesState({required this.nowPlayingMovies,required this.topRatedMovies,
-   required this.popularMovies
+   required this.popularMovies , required this.favoriteMovies
   });
 }
 

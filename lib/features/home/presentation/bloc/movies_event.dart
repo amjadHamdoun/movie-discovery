@@ -12,4 +12,18 @@ class OnGettingMoviesEvent extends MoviesEvent {
 
 class OnGettingLocalMoviesEvent extends MoviesEvent {}
 
+class OnAddFavoriteMovieEvent extends MoviesEvent {
+  final MovieEntity movie;
+  const OnAddFavoriteMovieEvent(this.movie);
+}
+
+class OnRemoveFavoriteMovieEvent extends MoviesEvent {
+  final MovieEntity movie;
+  const OnRemoveFavoriteMovieEvent(this.movie);
+
+}
+
+class OnGetFavoriteMoviesEvent extends MoviesEvent {}
+
+
 
