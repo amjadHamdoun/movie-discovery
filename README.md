@@ -18,7 +18,7 @@ Step-by-Step Setup
 
 Clone the Repository:
 
-git clone https://github.com/your-repo/movie-discovery-app.git
+git clone https://github.com/amjadHamdoun/movie-discovery.git
 cd movie-discovery-app
 
 Install Dependencies:
@@ -29,7 +29,7 @@ Set Up API Keys:
 
 Obtain an API key from TMDb.
 
-Add the API key in lib/core/constants/constants.dart.
+Add the API key to .env.
 
 Run the App:
 
@@ -64,11 +64,6 @@ flutter test test/home/data/data_sources/movies_api_test.dart
 flutter test test/home/data/repositories/movies_repository_impl_test.dart
 
 
-Check Test Coverage:
-
-flutter test --coverage
-genhtml coverage/lcov.info -o coverage/html
-open coverage/html/index.html
 
 🔍 Directory Structure Overview
 
@@ -78,7 +73,9 @@ lib/
 │    ├── home/
 │    ├── movie_details/
 │    └── search/
-└── main.dart
+└── main_dev.dart
+└── main_production.dart
+└── main_staging.dart
 
 ⚠️ Troubleshooting
 
