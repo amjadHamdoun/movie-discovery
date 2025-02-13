@@ -80,32 +80,19 @@ class MoviesLocalDataSourceImpl extends MoviesLocalDataSource {
 
   @override
   void addMovieToFavorites(MovieModel movie) {
-    try{
       final Box moviesBox = Hive.box(HiveKeyConstants.moviesBox);
-      print('1');
       List<MovieModel> favoritesMovies =getFavoritesMovies();
-      print(favoritesMovies);
       favoritesMovies.add(movie);
-      print('after');
-      print(favoritesMovies);
       moviesBox.put(HiveKeyConstants.favoritesMoviesKey, favoritesMovies);
-    }
-    catch(e){
-      print(e);
-    }
-
   }
 
   @override
   List<MovieModel> getFavoritesMovies() {
-    print('2');
     final Box moviesBox = Hive.box(HiveKeyConstants.moviesBox);
     final localFavoritesMovies = moviesBox.get(HiveKeyConstants.favoritesMoviesKey);
     final List<MovieModel>? favoritesMovies = (localFavoritesMovies as List?)
         ?.map((e) => e as MovieModel)
         .toList();
-    print('3');
-    print(favoritesMovies);
     return favoritesMovies??[];
   }
 
